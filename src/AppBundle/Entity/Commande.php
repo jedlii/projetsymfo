@@ -1,0 +1,237 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Commande
+ *
+ * @ORM\Table(name="commande")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CommandeRepository")
+ */
+class Commande
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=50)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=31)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=200)
+     */
+    private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="paiement", type="string", length=10)
+     */
+    private $paiement;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ProductCommande", mappedBy="commande")
+     */
+     private $ligneCommande;
+
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name.
+     *
+     * @param string $name
+     *
+     * @return Commande
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set email.
+     *
+     * @param string $email
+     *
+     * @return Commande
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email.
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set address.
+     *
+     * @param string $address
+     *
+     * @return Commande
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address.
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set paiement.
+     *
+     * @param string $paiement
+     *
+     * @return Commande
+     */
+    public function setPaiement($paiement)
+    {
+        $this->paiement = $paiement;
+
+        return $this;
+    }
+
+    /**
+     * Get paiement.
+     *
+     * @return string
+     */
+    public function getPaiement()
+    {
+        return $this->paiement;
+    }
+
+    /**
+     * Set date.
+     *
+     * @param \DateTime $date
+     *
+     * @return Commande
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date.
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->ligneCommande = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add ligneCommande.
+     *
+     * @param \AppBundle\Entity\ProductCommande $ligneCommande
+     *
+     * @return Commande
+     */
+    public function addLigneCommande(\AppBundle\Entity\ProductCommande $ligneCommande)
+    {
+        $this->ligneCommande[] = $ligneCommande;
+
+        return $this;
+    }
+
+    /**
+     * Remove ligneCommande.
+     *
+     * @param \AppBundle\Entity\ProductCommande $ligneCommande
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeLigneCommande(\AppBundle\Entity\ProductCommande $ligneCommande)
+    {
+        return $this->ligneCommande->removeElement($ligneCommande);
+    }
+
+    /**
+     * Get ligneCommande.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLigneCommande()
+    {
+        return $this->ligneCommande;
+    }
+}

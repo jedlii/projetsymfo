@@ -1,0 +1,41 @@
+{% extends 'default/list-layout.html.twig' %}
+{% block body %}
+	<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+					<li><a href="index.html">Home</a></li>
+					<li class="active">Commander</li>
+				</ol>
+			</div><!--/breadcrums-->
+
+			<div class="step-one">
+				<h2 class="heading">Valider ma commande / Mes coordonnées</h2>
+			</div>
+
+			<section id="form"><!--form-->
+				<div class="container">
+					<div class="row">
+
+						<div class="col-sm-12">
+							<div class="signup-form"><!--sign up form-->
+								{{form_start(form)}}
+								<h2>Données de facturation :</h2>
+								{{form_widget(form.name)}}
+								{{form_widget(form.email)}}
+								{{form_widget(form.address)}}
+								<h2>Modes de paiement</h2>
+								{{form_widget(form.paiement)}}
+								<p>&nbsp;</p>
+								<button type="submit" class="btn btn-default">Valider ma commande</button>
+								{{form_end(form)}}
+							</div><!--/sign up form-->
+						</div>
+					</div>
+				</div>
+			</section><!--/form-->
+			<p>&nbsp</p>
+
+		</div>
+	</section> <!--/#cart_items-->
+{% endblock %}
